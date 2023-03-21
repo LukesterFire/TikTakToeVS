@@ -19,7 +19,7 @@ int getInput() {
 }
 
 // create a funtion to draw the game
-void drawGame(vector<string> state) {
+void drawGame(string state) {
     cout << "     |     |     \n";
     cout << "  " << state[0] << "  |  " << state[1] << "  |  " << state[2] << "\n";
     cout << "_____|_____|_____\n";
@@ -32,7 +32,7 @@ void drawGame(vector<string> state) {
 }
 
 // create a function to check if someone won
-bool checkWin(vector<string> stateOfBoard, unsigned short selection, string token) {
+bool checkWin(string stateOfBoard, unsigned short selection, char token) {
     bool result = false;
     unsigned short column = selection % 3, row = (selection - 1) / 3;
 
@@ -74,13 +74,13 @@ int main() {
     cout << "Enjoy this game of TIK TAK TOE\n";
 
     // define the selection inputs
-    vector<string> currentState = { "7", "8", "9", "4", "5", "6", "1", "2", "3" };
+    string currentState = "789456123";
     drawGame(currentState);
 
     // clear the game board and intitialize important variables
-    currentState = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
-    unsigned short selection = 0;
-    string currentPlayerToken;
+    currentState = "         ";
+    int selection = 0;
+    char currentPlayerToken = '?';
 
     // start game
     for (unsigned short turnCount = 0; turnCount < 9 && checkWin(currentState, selection, currentPlayerToken) != true; turnCount++) {
@@ -97,15 +97,17 @@ int main() {
             selection += 6;
         else if (selection > 6)
             selection -= 6;
+        
+        enum TokenEnum { X ='X', O = 'O'};
 
         // define player tokens
         if (!turn)
-            currentPlayerToken = "X";
+            currentPlayerToken = TokenEnum::X;
         else
-            currentPlayerToken = "O";
+            currentPlayerToken = TokenEnum::O;
 
         // change the state of the game
-        if (selection && currentState[selection - 1] == " ") {
+        if (selection && currentState[selection - 1] == ' ') {
             currentState[selection - 1] = currentPlayerToken;
             drawGame(currentState);
         }
