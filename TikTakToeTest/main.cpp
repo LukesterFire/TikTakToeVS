@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -13,7 +12,6 @@ int getInput() {
     }
     else {
         cout << "Invalid Input!! Try again!\n";
-        cin.clear();
         return getInput();
     }
 }
@@ -86,7 +84,7 @@ int main() {
     for (unsigned short turnCount = 0; turnCount < 9 && checkWin(currentState, selection, currentPlayerToken) != true; turnCount++) {
 
         // who's turn is it?
-        unsigned short turn = turnCount%2;
+        unsigned short turn = turnCount % 2;
 
         // prompt player to input their selection
         cout << "Player " << turn + 1 << " make a selection.\n";
@@ -97,14 +95,14 @@ int main() {
             selection += 6;
         else if (selection > 6)
             selection -= 6;
-        
-        enum TokenEnum { X ='X', O = 'O'};
+
+        enum TokenEnum { X = 'X', O = 'O' };
 
         // define player tokens
-        if (!turn)
-            currentPlayerToken = TokenEnum::X;
-        else
+        if (turn)
             currentPlayerToken = TokenEnum::O;
+        else
+            currentPlayerToken = TokenEnum::X;
 
         // change the state of the game
         if (selection && currentState[selection - 1] == ' ') {
