@@ -95,8 +95,8 @@ int main() {
             selection += 6;
         else if (selection > 6)
             selection -= 6;
-
-        enum TokenEnum { X = 'X', O = 'O' };
+        
+        enum TokenEnum { X ='X', O = 'O'};
 
         // define player tokens
         if (turn)
