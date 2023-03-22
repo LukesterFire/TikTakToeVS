@@ -22,15 +22,15 @@ private:
   // create a function to get input from the players
   const int getInput() {
     // input to string type to avoid inputs that would cause errors
-    string str;
-    cin >> str;
+    string input;
+    cin >> input;
     //check for save request
-    if (str == "-save") {
+    if (input == "-save") {
       save();
       return -1;
     }
-    if (str.length() < 2 && str[0] > '0'-1 && str[0] < '9'+1) {
-      return str[0] - '0';
+    if (input.length() < 2 && input[0] > '0'-1 && input[0] < '9'+1) {
+      return input[0] - '0';
     }
     else {
       cout << "Invalid Input!! Try again!\n";
